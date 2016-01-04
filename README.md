@@ -1,5 +1,8 @@
 # OpenGL_ES_2.0
 介绍：本工程展示了多个OpenGLES2.0 特效， 支持Android， Windows版本。所有代码不保留版权，任何人可以任何目的拿本工程中的代码进行开发。 
+
+Introduce: This project show many opengles2.0 effects, suppors Android, windows. Anyone with any purpose can take all code in your project.
+
 #编译
 ##On Android：<br>
 1 下载NDK， SDK;<br>
@@ -11,6 +14,17 @@
 2. 运行<br>
 
 
-#截图
-##1. 火焰
+#Build
+##On Android<br>
+1. download NDK, SDK;<br>
+2. enter android/jni/, exe ndk_build<br>
+3. using eclipse build and run;<br>
+
+##On windows<br>
+1. install visual studio 2013;<br>
+2. run main.sin, build;<br>
+3. run<br>
+
+#Screnshot
+##1. fire_flame
 ![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/fire_flame/screenshot.jpg)
