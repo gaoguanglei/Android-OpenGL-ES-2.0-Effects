@@ -9,6 +9,4 @@
 1. 安装Visual Studio 2013;<br>
 2. 直接运行任何例子的main.sln， 编译；<br>
 2. 运行<br>
-3. 
-![](https://github.com/guodongxiaren/ImageCache/raw/master/Logo/foryou.gif) 
-![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/fire_flame/screenshot.png)
+
