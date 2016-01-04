@@ -13,4 +13,4 @@
 
 #截图
 ##1. 火焰
-![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/fire_flame/screenshot.png)
+![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/fire_flame/screenshot.jpg)
