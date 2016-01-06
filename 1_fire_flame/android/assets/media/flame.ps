@@ -1,0 +1,63 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   // Default precision
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+float distortion_amount2 = 0.072;
+float distortion_amount1 = 0.091;
+float distortion_amount0 = 0.123;
+
+vec4 height_attenuation = vec4(0.44,0.29,0.0,1.0);
+
+uniform sampler2D fire_distortion;
+uniform sampler2D fire_opacity;
+uniform sampler2D fire_base;
+
+varying vec2  vTexCoord0;
+varying vec2  vTexCoord1;
+varying vec2  vTexCoord2;
+varying vec2  vTexCoord3;
+
+// Bias and double a value to take it from 0..1 range to -1..1 range
+vec4 bx2v(vec4 x)
+{
+   vec4 retVal =x;
+   retVal = (2.0 * x) - vec4(1.0);
+   return retVal;
+}
+vec4 bx2(float x)
+{
+   float retVal;
+   retVal = 2.0 * x - 1.0;
+   return vec4(retVal,retVal,retVal,retVal);
+}
+
+void main(void)
+{
+   // Sample noise map three times with different texture coordinates
+   vec4 vnoise0;
+   vec4 vnoise1;
+   vec4 vnoise2;
+
+   vnoise0 = texture2D(fire_distortion, vTexCoord1);
+   vnoise1 = texture2D(fire_distortion, vTexCoord2);
+   vnoise2 = texture2D(fire_distortion, vTexCoord3);
+
+   // Weighted sum of signed noise
+   vec4 noiseSum = bx2v(vnoise0) * distortion_amount0 + 
+                   bx2v(vnoise1) * distortion_amount1 + 
+                   bx2v(vnoise2) * distortion_amount2;
+
+   // Perturb base coordinates in direction of noiseSum as function of height (y)
+   vec2 perturbedBaseCoords = vTexCoord0 + noiseSum.xy * ( (vTexCoord0.y) * height_attenuation.x + height_attenuation.y);
+
+   
+   // Sample base and opacity maps with perturbed coordinates
+   vec4 base    = texture2D(fire_base,    perturbedBaseCoords);
+   vec4 opacity = texture2D(fire_opacity, perturbedBaseCoords);
+
+   gl_FragColor =  opacity * base;
+
+}

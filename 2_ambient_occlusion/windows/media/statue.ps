@@ -1,0 +1,20 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+
+varying vec3 v_normal;
+varying vec2 v_texcoord;
+
+uniform samplerCube s_enviroment;   
+uniform sampler2D s_diffuse;
+                  
+void main()                                         
+{                                                   
+	vec4 ambient = textureCube(s_enviroment, v_normal);
+	float ambient_occlusion = texture2D(s_diffuse, v_texcoord).r;
+	gl_FragColor = ambient * ambient_occlusion;
+//gl_FragColor = vec4(1.0,1.0,0.0,1.0);
+
+}
