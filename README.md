@@ -29,7 +29,7 @@ Introduce: This project show many opengles2.0 effects, suppors Android, windows.
 ##1. fire_flame
 ![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/1_fire_flame/screenshot.jpg)
 
-##2. fire_flame
+##2. ambient_occlusion
 ![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/2_ambient_occlusion/screenshot.jpg)
 
 
