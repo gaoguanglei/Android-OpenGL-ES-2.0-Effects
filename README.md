@@ -40,3 +40,24 @@ Introduce: This project show many opengles2.0 effects, suppors Android, windows.
 
 ##5. bounce_solid
 ![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/5_bounce_solid/screenshot.jpg)
+
+##6_bump_specular	
+![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/6_bump_specular/screenshot.jpg)
+
+##7_bump_spotlight	
+![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/7_bump_spotlight/screenshot.jpg)
+
+##8_depth_complexity
+![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/8_depth_complexity/screenshot.jpg)
+
+##9_depth_of_field	
+![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/9_depth_of_field/screenshot.jpg)
+
+##10_disco_lighting	
+![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/10_disco_lighting/screenshot.jpg)
+
+##11_earth
+![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/11_earth/screenshot.jpg)
+
+##12_erosion
+![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/12_erosion/screenshot.jpg)
