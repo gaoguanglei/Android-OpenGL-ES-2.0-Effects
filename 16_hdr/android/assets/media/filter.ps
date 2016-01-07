@@ -1,0 +1,33 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+uniform sampler2D Src;
+
+varying vec2 texCoord;
+
+float texScaler = 1.0/128.0;
+float texOffset = -0.5/128.0;
+
+uniform vec4 gaussFilter[7];
+
+void main(void)
+{
+   vec4 color = vec4(0.0,0.0,0.0,0.0);
+   
+   
+   
+   int i;
+   for (i=0;i<7;i++)
+   {
+      color += texture2D(Src,vec2(texCoord.x + gaussFilter[i].x * texScaler + texOffset,
+                                  texCoord.y + gaussFilter[i].y * texScaler + texOffset)) * 
+                    gaussFilter[i].w;
+   } // End for
+   
+  color.a *= 2.0;
+   
+   gl_FragColor = color;
+}

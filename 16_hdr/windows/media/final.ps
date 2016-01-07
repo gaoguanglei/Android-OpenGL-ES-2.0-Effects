@@ -1,0 +1,23 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+float Exposure = 1.56;
+uniform sampler2D SrcColor;
+uniform sampler2D SrcHDR;
+
+varying vec2 texCoord;
+
+void main(void)
+{
+   vec4 color  = texture2D(SrcColor,texCoord);
+   vec4 scaler = texture2D(SrcHDR,texCoord);
+   scaler.a *= 4.0;
+   //if (scaler.a>0.0)
+   //   gl_FragColor = vec4(scaler.a,0.0,0.0,0.0);
+   //else
+     gl_FragColor = color * ( ( 1.0 + scaler.a ) * Exposure );
+
+}

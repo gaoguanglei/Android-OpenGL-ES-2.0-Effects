@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="main">
+      <UniqueIdentifier>{4823fa4c-7f6b-41d1-a96e-fc55676db687}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{9660ac56-9367-42de-b020-1ce5eb2c5626}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="windows">
+      <UniqueIdentifier>{07661c90-ada6-4ec1-9ca5-5ac6ba1be8ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rs">
+      <UniqueIdentifier>{b61d00e8-1ceb-474f-a5a9-1b57c9d9d733}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\3ds.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\load_dds.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\load_tga.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\math_lib.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\shader_loader.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\shader_program.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\shape.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platform\windows_gl\windows_main.cpp">
+      <Filter>windows</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\common\3ds.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\image.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\math_lib.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\platform.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\shader_loader.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\shader_program.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\shape.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platform\windows_gl\windows_main.h">
+      <Filter>windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\env.ps">
+      <Filter>rs</Filter>
+    </None>
+    <None Include="media\env.vs">
+      <Filter>rs</Filter>
+    </None>
+    <None Include="media\filter.ps">
+      <Filter>rs</Filter>
+    </None>
+    <None Include="media\filter.vs">
+      <Filter>rs</Filter>
+    </None>
+    <None Include="media\final.ps">
+      <Filter>rs</Filter>
+    </None>
+    <None Include="media\final.vs">
+      <Filter>rs</Filter>
+    </None>
+    <None Include="media\obj.ps">
+      <Filter>rs</Filter>
+    </None>
+    <None Include="media\obj.vs">
+      <Filter>rs</Filter>
+    </None>
+    <None Include="media\shrink.ps">
+      <Filter>rs</Filter>
+    </None>
+    <None Include="media\shrink.vs">
+      <Filter>rs</Filter>
+    </None>
+  </ItemGroup>
+</Project>

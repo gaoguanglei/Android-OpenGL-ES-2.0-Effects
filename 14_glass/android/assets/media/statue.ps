@@ -1,0 +1,32 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+
+float rainbowiness = 0.5;
+
+varying vec3 v_normal;
+//varying vec2 v_texcoord;
+varying vec3 v_view;
+
+uniform samplerCube s_enviroment;   
+uniform sampler2D s_diffuse;
+                  
+void main()                                         
+{ 
+	 vec3 normal = normalize(v_normal);
+
+   float v =  dot(normalize(v_view), normal);
+
+   // Map a rainbowish color
+   vec3 rainbow = texture2D(s_diffuse, vec2(v,0.0)).xyz;
+
+   // Find the reflection
+   vec3 reflVec =  reflect(-normalize(v_view), normal);
+   vec3 refl = textureCube(s_enviroment, reflVec).xyz;
+
+   vec3 color = mix(refl, rainbow, rainbowiness * v);
+   gl_FragColor = vec4 (color,  1.0 - v);  
+
+}

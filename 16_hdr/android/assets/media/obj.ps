@@ -1,0 +1,24 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+uniform sampler2D BumpMap;
+uniform sampler2D ObjectMap;
+
+varying vec2 texCoord;
+varying vec3 lightDirInTangent;
+varying vec3 normal;
+
+void main(void)
+{
+   vec4  bump     = texture2D(BumpMap,texCoord) * 2.0 - 1.0;
+   float lighting = max(dot(bump.xyz,normalize(lightDirInTangent)), 0.4);
+   
+   vec4 texColor = texture2D(ObjectMap,texCoord);
+   vec4 color = texColor * lighting;
+   gl_FragColor = vec4(color.xyz,0.0);
+
+
+}

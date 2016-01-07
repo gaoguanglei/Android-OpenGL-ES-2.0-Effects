@@ -1,0 +1,20 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+uniform sampler2D RT;
+
+varying vec2 texCoord;
+
+float texOffset = -0.5/128.0;
+
+void main(void)
+{
+   vec4 color = texture2D(RT,
+                          vec2(texCoord.x + texOffset,
+                          texCoord.y + texOffset));
+   color.a *= 8.0;
+   gl_FragColor = color;                          
+}

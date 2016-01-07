@@ -1,0 +1,75 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+
+float ambient = 0.2;
+float reflectionScale = 1.0;
+float refractionScale = 1.0;
+vec4 baseColor = vec4(0.7,0.7,0.8,1.0);
+float rainbowScale = 0.2;
+float rainbowSpread = 0.18;
+float indexOfRefractionRatio = 1.14;
+float rainbowiness = 0.5;
+
+varying vec3 v_normal;
+varying vec3 v_view;
+
+uniform samplerCube s_enviroment;   
+uniform sampler2D s_diffuse;
+                  
+void main()                                         
+{ 
+	vec3 normal = normalize(v_normal);
+   vec3 viewVec = normalize(v_view);
+
+   // Look up the reflection
+   vec3 reflVec = reflect(-viewVec, normal);
+   vec4 reflection = textureCube(s_enviroment, reflVec.xyz);
+
+   // We'll use Snell's refraction law:
+   // n  * sin(theta ) = n  * sin(theta )
+   //  i            i     r            r
+
+   // sin(theta )
+   //          i
+   float cosine = dot(viewVec, normal);
+   float sine = sqrt(1.0 - cosine * cosine);
+
+   // sin(theta )
+   //          r
+   float sine2 = clamp(indexOfRefractionRatio * sine, 0.0, 1.0);   // same as saturate
+   float cosine2 = sqrt(1.0 - sine2 * sine2);
+
+   // Out of the sine and cosine of the angle between the
+   // refraction vector and the normal we can construct the
+   // refraction vector itself given two base vectors.
+   // These two base vectors are the negative normal and
+   // a tangent vector along the path of the incoming vector
+   // relative to the surface.
+   vec3 x = -normal;
+   vec3 y = normalize(cross(cross(viewVec, normal), normal));
+
+   // Refraction
+   vec3 refrVec = x * cosine2 + y * sine2;
+
+ //  vec3 refrVec = refract(viewVec, normal, indexOfRefractionRatio);
+   vec4 refraction = textureCube(s_enviroment, refrVec.xyz);
+
+
+   // Colors refract differently and the difference is more
+   // visible the stronger the refraction. We'll fake this
+   // effect by adding some rainbowish colors accordingly.
+   vec4 rainbow = texture2D(s_diffuse, vec2( pow(cosine, rainbowSpread), 0.0));
+
+   vec4 rain = rainbowScale * rainbow * baseColor;
+   vec4 refl = reflectionScale * reflection;
+   vec4 refr = refractionScale * refraction * baseColor;
+
+   // There is more light reflected at sharp angles and less
+   // light refracted. There is more color separation of refracted
+   // light at sharper angles
+   gl_FragColor =  sine * refl + (1.0 - sine2) * refr + sine2 * rain + vec4(ambient);
+  
+}
