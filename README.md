@@ -32,4 +32,11 @@ Introduce: This project show many opengles2.0 effects, suppors Android, windows.
 ##2. ambient_occlusion
 ![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/2_ambient_occlusion/screenshot.jpg)
 
+##3. anisotropic_effect
+![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/2_anisotropic_effect/screenshot.jpg)
 
+##4. bounce_deforming
+![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/4_bounce_deforming/screenshot.jpg)
+
+##5. bounce_solid
+![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/5_bounce_solid/screenshot.jpg)
