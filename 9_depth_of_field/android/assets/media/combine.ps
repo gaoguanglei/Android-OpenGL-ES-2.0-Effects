@@ -1,0 +1,24 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+
+uniform sampler2D RT;
+uniform sampler2D Blur1;
+
+float focus = 0.48;
+float range = 4.6;
+
+varying vec2 vTexCoord;
+
+
+void main(void)
+{
+   vec4 sharp = texture2D(RT,    vTexCoord);
+   vec4 blur  = texture2D(Blur1, vTexCoord);
+
+  gl_FragColor = mix(sharp, blur, clamp(range * abs(focus - sharp.a), 0.0, 1.0));
+ //  gl_FragColor = blur;
+}

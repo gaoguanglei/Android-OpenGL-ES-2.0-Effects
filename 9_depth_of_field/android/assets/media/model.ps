@@ -1,0 +1,34 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   // default precision
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+uniform sampler2D base;
+
+vec4 lightDir = vec4(0,0,1.0,1.0);
+
+float Ks = 0.96;
+float Kd = 0.94;
+
+varying vec2 vTexCoord;
+varying vec3 vNormal;
+varying vec3 vViewVec;
+
+void main(void)
+{
+   vec3 base = texture2D(base, vTexCoord).xyz;
+
+   // Basic lighting
+   float diffuse = dot(lightDir.xyz, vNormal);
+   float specular = pow(clamp(dot(reflect(-normalize(vViewVec), vNormal), lightDir.xyz),0.0, 1.0), 16.0);
+   vec3  light = Kd * diffuse * base + Ks * specular;
+
+   // We'll use the distance to decide how much blur we want
+   float dist = length(vViewVec);
+
+   gl_FragColor = vec4( light, dist);
+
+
+}

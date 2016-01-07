@@ -1,0 +1,20 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+uniform sampler2D color;
+uniform sampler2D RT;
+
+varying vec2 vTexCoord;
+
+void main(void)
+{
+   // Grab the depth complexity from the rendered texture
+   vec2 depthC = vec2( texture2D(RT, vTexCoord).x, 0.5);
+
+   // Do a simple dependent texture read to look up a color
+  gl_FragColor = texture2D(color, depthC);
+
+}

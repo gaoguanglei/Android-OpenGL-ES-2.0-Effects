@@ -1,0 +1,45 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+uniform sampler2D BumpMap;
+uniform sampler2D ObjectMap;
+
+float spread = 23.0;
+float sharpness = 26.0;
+
+varying vec2 vTexCoord;
+varying vec3 vLightVec;
+varying vec3 vLightDir;
+varying vec3 vViewVec;
+
+//varying vec3 vTangent;
+//varying vec3 vBinormal;
+varying vec3 vNormal;
+
+float saturate( float inValue)
+{
+   return clamp(inValue, 0.0, 1.0);
+}
+void main(void)
+{
+   vec4 base = texture2D(ObjectMap, vTexCoord);
+   vec3 bump = texture2D(BumpMap, vTexCoord).xyz * 2.0 - 1.0;
+
+    
+   // Standard lighting
+   vec3  lVec     = normalize(vLightVec);
+
+   float diffuse  = saturate(dot(lVec, bump));
+   float specular = pow(saturate(dot(reflect(normalize(-vViewVec), bump), lVec)), 16.0);
+
+   // The angle between light vector and spotlight direction
+   // defines the spot.
+   float spot     = saturate(sharpness * pow(saturate(dot(lVec, -vLightDir)), spread));
+   
+   gl_FragColor = (diffuse * base + specular) * spot + 0.25 * base;
+
+ //   gl_FragColor = vec4(diffuse);
+}

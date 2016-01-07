@@ -1,0 +1,79 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+uniform sampler2D BumpMap;
+uniform sampler2D ObjectMap;
+
+float spread = 23.0;
+float sharpness = 26.0;
+float bumpiness = 1.0;
+vec4 specular = vec4(1.0,0.9,0.6,1.0);
+vec4 diffuse = vec4(0.8,0.8,0.9,1.0);
+vec4 ambient = vec4(0.8,0.8,0.9,1.0);
+float Kd = 0.8;
+float Ks = 1.0;
+float Ka = 0.3;
+float specular_power = 64.0;
+
+
+varying vec2 vTexCoord;
+varying vec3 vLightVec;
+varying vec3 vHalfAngle;
+
+
+float saturate( float inValue)
+{
+   return clamp(inValue, 0.0, 1.0);
+}
+void main(void)
+{
+   vec3 base = texture2D( ObjectMap, vTexCoord ).xyz;
+   vec3 bump = texture2D( BumpMap, vTexCoord ).xyz;
+
+   //**----------------------------------------------------
+   //** Normalize the passed vectors from the vertex shader
+   //**----------------------------------------------------
+   vec3 normalized_light_vector = normalize( vLightVec );
+   vec3 normalized_half_angle   = normalize( vHalfAngle );
+  
+   //**--------------------------------------------------------
+   //** "Smooth out" the bumps based on the bumpiness parameter.
+   //** This is simply a linear interpolation between a "flat"
+   //** normal and a "bumped" normal.  Note that this "flat"
+   //** normal is based on the texture space coordinate basis.
+   //**--------------------------------------------------------
+   vec3 smoothOut = vec3(0.5, 0.5, 1.0);
+  
+   bump = mix( smoothOut, bump, bumpiness );
+   bump = normalize( ( bump * 2.0 ) - 1.0 );
+
+   //**---------------------------------------------------------
+   //** These dot products are used for the lighting model
+   //** equations.  The surface normal dotted with the light
+   //** vector is denoted by n_dot_l.  The normal vector
+   //** dotted with the half angle vector is denoted by n_dot_h.
+   //**---------------------------------------------------------
+   vec3 n_dot_l = vec3(dot( bump, normalized_light_vector ));
+   vec3 n_dot_h = vec3(dot( bump, normalized_half_angle ));
+
+   //**--------------------------------------
+   //** Calculate the resulting base color,
+   //** based on our lighting model.
+   //** Ambient + Diffuse + Specular
+   //**--------------------------------------
+   vec3 color0 = ( base * ambient.xyz * Ka ) +
+                 ( base * diffuse.xyz * Kd * max( vec3(0.0), n_dot_l ) ) +
+                 ( specular.xyz * Ks * pow( max( vec3(0.0), n_dot_h ), vec3(specular_power) ));
+
+   //**------------------------------------
+   //** Interpolate the resulting color
+   //** based on the reflectance parameter.
+   //**------------------------------------
+   float color0_a = 1.0; //** Set the alpha component manually
+
+
+   gl_FragColor = vec4(color0.xyz, color0_a); //** Return the resulting output struct
+}
