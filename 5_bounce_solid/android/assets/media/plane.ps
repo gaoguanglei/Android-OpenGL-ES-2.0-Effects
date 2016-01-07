@@ -1,0 +1,23 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+uniform sampler2D baseMap;
+
+vec4 lightDir = vec4(0.0,0.0,1.0,1.0);
+
+varying vec2 vTexCoord;
+varying vec3 vNormal;
+varying vec3 vViewVec;
+
+
+void main(void)
+{
+   vec4  base    = texture2D(baseMap, vTexCoord);
+   float diffuse = clamp(dot(normalize(vNormal), vec3(lightDir)), 0.0, 1.0);
+
+   gl_FragColor  = vec4(0.3 + 0.7 * diffuse) * base;
+
+}

@@ -22,7 +22,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH) \
 			$(rendermonkey)/common/ \
 			$(rendermonkey)/platform/android/
 LOCAL_MODULE    := fire_flame
-LOCAL_SRC_FILES := $(rendermonkey)/fire_flame/main.cpp \
+LOCAL_SRC_FILES := ../../main.cpp \
 		 	$(rendermonkey)/common/3ds.cpp \
 			$(rendermonkey)/common/load_tga.cpp \
 			$(rendermonkey)/common/load_dds.cpp \

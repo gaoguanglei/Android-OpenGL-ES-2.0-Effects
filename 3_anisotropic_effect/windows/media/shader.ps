@@ -1,0 +1,13 @@
+
+varying vec3 pos;
+varying vec2 texCoord;
+
+//uniform samplerCube s_envMap;   
+uniform sampler2D s_diffuse;
+                  
+void main()                                         
+{                                                   
+//	gl_FragColor = textureCube(s_envMap, pos);
+//gl_FragColor = vec4(pos.z);
+	gl_FragColor = texture2D(s_diffuse, texCoord);
+}

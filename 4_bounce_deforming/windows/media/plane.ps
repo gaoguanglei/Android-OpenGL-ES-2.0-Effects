@@ -1,0 +1,36 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+uniform sampler2D baseMap;
+
+vec4 lightDir = vec4(0.0,0.0,1.0,1.0);
+
+varying vec2 vTexCoord;
+varying vec3 vNormal;
+varying vec3 vViewVec;
+
+
+float saturate( float value)
+{
+    return clamp( value, 0.0, 1.0);
+}
+
+void main(void)
+{
+   vec3 lightVec   = normalize(lightDir.xyz);
+   vec4 baseSample = texture2D( baseMap, vTexCoord);
+   float specular;
+   
+   // Soft diffuse
+   float diffuse = 0.5 * dot(lightVec, vNormal);
+ 
+
+   specular = pow(saturate(dot(reflect(normalize(vViewVec), normalize(vNormal)),lightVec)), 34.0);   
+   
+   gl_FragColor =  diffuse * baseSample + 0.4 * specular;
+ 
+   
+}

@@ -1,0 +1,61 @@
+﻿Build started 2016/1/7 12:13:36.
+     1>Project "E:\git_work\OpenGL_ES_2.0\5_bounce_solid\windows\main.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../../common/ /I../../ /I../../platform/windows_gl /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D WINDOWS_OPENGL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\common\3ds.cpp ..\..\common\load_dds.cpp ..\..\common\load_tga.cpp ..\..\common\math_lib.cpp ..\..\common\shader_loader.cpp ..\..\common\shader_program.cpp ..\..\common\shape.cpp ..\..\platform\windows_gl\windows_main.cpp ..\main.cpp
+         main.cpp
+     1>e:\git_work\opengl_es_2.0\common\image.h(94): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(253) : see declaration of 'stricmp'
+     1>e:\git_work\opengl_es_2.0\common\image.h(99): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(253) : see declaration of 'stricmp'
+     1>e:\git_work\opengl_es_2.0\5_bounce_solid\main.cpp(184): warning C4101: 'texcoord' : unreferenced local variable
+     1>e:\git_work\opengl_es_2.0\5_bounce_solid\main.cpp(226): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>e:\git_work\opengl_es_2.0\5_bounce_solid\main.cpp(343): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>e:\git_work\opengl_es_2.0\5_bounce_solid\main.cpp(373): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         windows_main.cpp
+         shape.cpp
+         shader_program.cpp
+         shader_loader.cpp
+     1>e:\git_work\opengl_es_2.0\common\shader_loader.cpp(45): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
+         math_lib.cpp
+         load_tga.cpp
+     1>e:\git_work\opengl_es_2.0\common\image.h(94): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(253) : see declaration of 'stricmp'
+     1>e:\git_work\opengl_es_2.0\common\image.h(99): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(253) : see declaration of 'stricmp'
+     1>e:\git_work\opengl_es_2.0\common\load_tga.cpp(77): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
+         load_dds.cpp
+     1>e:\git_work\opengl_es_2.0\common\image.h(94): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(253) : see declaration of 'stricmp'
+     1>e:\git_work\opengl_es_2.0\common\image.h(99): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(253) : see declaration of 'stricmp'
+     1>e:\git_work\opengl_es_2.0\common\load_dds.cpp(201): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>e:\git_work\opengl_es_2.0\common\load_dds.cpp(202): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>e:\git_work\opengl_es_2.0\common\load_dds.cpp(203): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>e:\git_work\opengl_es_2.0\common\load_dds.cpp(204): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>e:\git_work\opengl_es_2.0\common\load_dds.cpp(455): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
+         3ds.cpp
+     1>e:\git_work\opengl_es_2.0\common\3ds.cpp(22): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
+         Generating Code...
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1193,5): warning MSB8012: TargetPath(E:\git_work\OpenGL_ES_2.0\5_bounce_solid\windows\Debug\main.exe) does not match the Linker's OutputFile property value (E:\git_work\OpenGL_ES_2.0\5_bounce_solid\windows\main.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\git_work\OpenGL_ES_2.0\5_bounce_solid\windows\\main.exe" /INCREMENTAL /NOLOGO /LIBPATH:../../platform/windows_gl opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\git_work\OpenGL_ES_2.0\5_bounce_solid\windows\Debug\main.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\git_work\OpenGL_ES_2.0\5_bounce_solid\windows\Debug\main.lib" /MACHINE:X86 /SAFESEH Debug\3ds.obj
+         Debug\load_dds.obj
+         Debug\load_tga.obj
+         Debug\math_lib.obj
+         Debug\shader_loader.obj
+         Debug\shader_program.obj
+         Debug\shape.obj
+         Debug\windows_main.obj
+         Debug\main.obj
+         LINK : program database E:\git_work\OpenGL_ES_2.0\5_bounce_solid\windows\Debug\main.pdb missing; performing full link
+     1>3ds.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+         main.vcxproj -> E:\git_work\OpenGL_ES_2.0\5_bounce_solid\windows\Debug\main.exe
+     1>Done Building Project "E:\git_work\OpenGL_ES_2.0\5_bounce_solid\windows\main.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.02

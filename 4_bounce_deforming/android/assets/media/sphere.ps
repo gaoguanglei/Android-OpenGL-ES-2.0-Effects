@@ -1,0 +1,39 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+vec4 ballColor = vec4(1.0,0.0,0.0,1.0);
+vec4 lightDir = vec4(0.0,0.0,1.0,1.0);
+
+varying vec3 normal;
+varying vec3 viewVec;
+
+
+float saturate( float value)
+{
+    return clamp( value, 0.0, 1.0);
+}
+
+
+void main(void)
+{
+   vec3 nNormal    = normalize(normal);
+   vec3 lv         = normalize(lightDir.xyz);
+   // Soft diffuse
+   float diffuse = 0.5;
+   
+
+   // Standard specular
+//   vec3 reflectionVector = reflect(-normalize(viewVec), nNormal);
+
+   float specular = 0.0;
+   if(dot(nNormal, lv)>0.0)
+   {
+	   diffuse += 0.5 * dot(lv, nNormal);
+	   specular = pow(saturate(dot(reflect(normalize(viewVec), nNormal), lv)), 32.0);
+   }
+   gl_FragColor = diffuse * ballColor + specular;
+//    gl_FragColor = specular;
+}

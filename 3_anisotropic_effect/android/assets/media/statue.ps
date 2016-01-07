@@ -1,0 +1,72 @@
+
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+uniform sampler2D strand;
+uniform sampler2D ring_gradient;
+uniform vec4      lightColor;
+uniform vec4      ringColor;
+uniform vec4      ringAmbientColor;
+
+varying vec4 vNormal;      // Has ambient in W
+varying vec4 vTexPos;   // Has light intensity in W
+varying vec3 vDirAniso;
+varying vec3 vLight1;
+varying vec3 vLight2;
+varying vec3 vView;
+
+struct StrandPair
+{
+   float Diffuse;
+   float Specular;
+};
+
+//----------------------------------------------------------------------------------------------//
+StrandPair StrandLight( vec3 normal, vec3 light, vec3 view, vec3 dirAniso )
+{
+   StrandPair o;
+
+   float  LdA        = dot( light, dirAniso );
+   float  VdA        = dot( view,  dirAniso );
+   vec2   fnLookup   = texture2D( strand, vec2( LdA, VdA ) * 0.5 + vec2(0.5,0.5) ).xy;
+   float  spec       = fnLookup.y * fnLookup.y;
+   float  diff       = fnLookup.x; 
+   float  selfShadow = clamp( dot( normal, light ), 0.0, 1.0 ); // same as saturate in DirectX
+
+   o.Diffuse  = diff * selfShadow;
+   o.Specular = spec * selfShadow;
+   return o;
+}
+//----------------------------------------------------------------------------------------------//
+
+
+void main(void)
+{
+   // Extract components from inputs //
+   vec3 dirAniso = vec3(vDirAniso) * 2.0 - vec3(1.0);
+   vec3 normal   = vec3(vNormal)   * 2.0 - vec3(1.0);
+   vec3 view     = vec3(vView);
+   float  shadow   = vTexPos.w;
+   float  ambient  = vNormal.w;
+
+   // Strand Lighting //
+   vec3   color = vec3(0.0);
+
+   StrandPair strand =  StrandLight(normal, vec3(vLight1), view, dirAniso);
+   color += (strand.Diffuse + strand.Specular) * lightColor.xyz;
+
+   strand = StrandLight(normal, vec3(vLight2), view, dirAniso);
+   color += (strand.Diffuse + strand.Specular) * lightColor.xyz;
+
+   vec4 ringNewColor = vec4(0.0, 0.0, 0.0, 0.0);
+   ringNewColor  = texture2D(ring_gradient, vec2(length(vTexPos),0.0)) * ringColor + ringAmbientColor;
+
+   color = (color*shadow + ambient) * ringNewColor.xyz;
+   
+   gl_FragColor = vec4( color, 1.0);   
+   
+//   gl_FragColor = texture2D(ring_gradient, vec2(length(vTexPos),0.0));
+}

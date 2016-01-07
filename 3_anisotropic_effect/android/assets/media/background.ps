@@ -1,0 +1,10 @@
+
+varying vec3 v_position;
+
+
+uniform samplerCube s_enviroment;   
+                  
+void main()                                         
+{                                                   
+	gl_FragColor = textureCube(s_enviroment, normalize(v_position));
+}
