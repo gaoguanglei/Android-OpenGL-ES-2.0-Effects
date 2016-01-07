@@ -61,3 +61,6 @@ Introduce: This project show many opengles2.0 effects, suppors Android, windows.
 
 ##12_erosion
 ![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/12_erosion/screenshot.jpg)
+
+##13_fur
+![](https://github.com/gaoguanglei/OpenGL_ES_2.0/raw/master/13_fur/screenshot.jpg)
