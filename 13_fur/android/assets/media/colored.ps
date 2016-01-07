@@ -1,0 +1,22 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+   // Default precision
+   precision highp float;
+#else
+   precision mediump float;
+#endif
+
+vec4 furColor = vec4(0.27,0.16,0.05,1.0);
+uniform sampler2D Fur;
+
+varying vec3 vNormal;
+varying vec2 vTexCoord;
+
+void main(void)
+{
+    // Get the hair shaft alpha
+    vec4 fAlpha = texture2D( Fur, vTexCoord );
+    
+    // Modulate the color by the color scale and the alpha        
+    gl_FragColor = furColor * fAlpha;
+
+}
